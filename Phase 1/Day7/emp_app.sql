@@ -168,3 +168,12 @@ SELECT employees.name AS emp_name,
 FROM employees 
 INNER JOIN cities ON employees.city_id = cities.id
 RIGHT JOIN countries ON cities.country_id = countries.id;
+
+ select  department_id,
+        count(*) as number_of_employees, 
+        sum(salary) as total_salary, 
+        min(salary) as min_salary, 
+        max(salary) as max_salary, 
+        avg(salary) as average_salary
+    from employees 
+    group by department_id;

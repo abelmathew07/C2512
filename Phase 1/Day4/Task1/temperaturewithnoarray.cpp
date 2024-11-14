@@ -1,11 +1,13 @@
 #include<iostream>
 using namespace std;
 #define MAX_SIZE 1000
-#include<cstdlib>
+#include <cstdlib>
 #include <climits>
 #include <cmath>
 
 //abel
+
+
 
 
 int findMinimumTemperature(int current , int min )

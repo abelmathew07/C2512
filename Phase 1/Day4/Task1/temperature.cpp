@@ -7,15 +7,17 @@ using namespace std;
 
 //abel
 
+
+
 void readTemperature(int temperatures[],int& size)
 {
        int i=0; //for iteration
        int currentTemperature=0;
        do
         {
-            
-         cout << "enter the patient's temperature " << (i+1) << ": ";
-         cin >> currentTemperature;
+                  
+          cout << "enter the patient's temperature " << (i+1) << ": ";
+          cin >> currentTemperature;
             if (currentTemperature!=0)
             {    ++size;
                 temperatures[i] = currentTemperature;
