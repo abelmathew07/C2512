@@ -1,0 +1,283 @@
+2.C++ Program to Store Employee Details
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Employee {
+    int id;
+    string name;
+    float salary;
+};
+
+vector<Employee> employees;
+
+void Add(int id, string name, float salary) {
+    employees.push_back({id, name, salary});
+}
+
+void Display() {
+    for (const auto &e : employees)
+        cout << "ID: " << e.id << ", Name: " << e.name << ", Salary: " << e.salary << endl;
+}
+
+void Remove(int id) {
+    employees.erase(remove_if(employees.begin(), employees.end(),
+                              [id](Employee e) { return e.id == id; }),
+                    employees.end());
+}
+
+
+ 4.Print "A" and "B" Using Derived Object
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    void display() { cout << "A"; }
+};
+
+class Derived : public Base {
+public:
+    void display() { cout << "B"; }
+    void displayBase() { Base::display(); }
+};
+
+int main() {
+    Derived obj;
+    obj.displayBase(); // Prints "A"
+    obj.display();     // Prints "B"
+}
+
+5.Replace Spaces with Underscores
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str = "Hello World Example";
+    for (char &ch : str) {
+        if (ch == ' ')
+            ch = '_';
+    }
+    cout << str; // Output: Hello_World_Example
+}
+
+6. Vehicle Class and Polymorphism
+
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    virtual void showDetails() { cout << "General Vehicle\n"; }
+};
+
+class Car : public Vehicle {
+public:
+    void showDetails() override { cout << "Car Details\n"; }
+};
+
+class Bike : public Vehicle {
+public:
+    void showDetails() override { cout << "Bike Details\n"; }
+};
+
+int main() {
+    Vehicle *v1 = new Car();
+    Vehicle *v2 = new Bike();
+    v1->showDetails(); // Car Details
+    v2->showDetails(); // Bike Details
+}
+
+7.Static Functions
+-  Static functions belong to the class, not an object. They can be called using the class name.
+
+#include <iostream>
+using namespace std;
+
+class Test {
+public:
+    static void display() { cout << "Static function called\n"; }
+};
+
+int main() {
+    Test::display(); // Direct call without object
+}
+
+8. Operator Overloading
+
+#include <iostream>
+using namespace std;
+
+class Complex {
+public:
+    int real, imag;
+    Complex(int r, int i) : real(r), imag(i) {}
+    Complex operator+(const Complex &c) {
+        return Complex(real + c.real, imag + c.imag);
+    }
+    void display() { cout << real << " + " << imag << "i\n"; }
+};
+
+int main() {
+    Complex c1(1, 2), c2(3, 4);
+    Complex c3 = c1 + c2;
+    c3.display(); // Output: 4 + 6i
+}
+
+ 9. OOP Concepts
+1. Encapsulation: Binding data and methods in a class.
+2. Abstraction: Hiding implementation details.
+3. Inheritance: Reusing code by extending classes.
+4. Polymorphism: Functions behaving differently based on context (compile-time and runtime).
+
+
+10. Abstraction
+
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual void area() = 0; // Pure virtual function
+};
+
+class Circle : public Shape {
+public:
+    void area() override { cout << "Area = πr²\n"; }
+};
+
+int main() {
+    Shape *s = new Circle();
+    s->area(); // Output: Area = πr²
+}
+
+
+11. Virtual Function and Runtime Polymorphism
+- Virtual Function: Allows overriding functions in derived classes for runtime polymorphism.
+
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void display() { cout << "Base class\n"; }
+};
+
+class Derived : public Base {
+public:
+    void display() override { cout << "Derived class\n"; }
+};
+
+int main() {
+    Base *b = new Derived();
+    b->display(); // Output: Derived class
+}
+
+12. Access Modifiers
+- Public: Accessible anywhere.
+- Private: Accessible only within the class.
+- Protected: Accessible in derived classes.
+class Example {
+private:
+    int a;
+protected:
+    int b;
+public:
+    int c;
+};
+
+13. STL (Standard Template Library)
+
+-STL provides pre-built classes and functions for common data structures (vector, map, etc.) and algorithms (sort, find, etc.).
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    vector<int> v = {4, 2, 8};
+    sort(v.begin(), v.end());
+    for (int i : v) cout << i << " "; // Output: 2 4 8
+}
+
+14. Friend Function
+-  A friend function can access private and protected members of a class.
+- Implementation: Use the `friend` keyword in the class.
+
+#include <iostream>
+using namespace std;
+
+class Test {
+private:
+    int data;
+public:
+    Test(int d) : data(d) {}
+    friend void displayData(const Test &t);
+};
+
+void displayData(const Test &t) {
+    cout << "Data: " << t.data << endl;
+}
+int main() {
+    Test t(10);
+    displayData(t);
+}
+
+15.typedef
+-Creates an alias for a data type. 
+typedef int Age;
+Age x = 25; // Equivalent to int x = 25;
+
+
+16. Data Structure
+-  A way to organize, manage, and store data for efficient access and modification.
+- Examples: Arrays, Linked Lists, Trees, Graphs, Stacks, Queues.
+
+ 17. Stack and Queue
+- Stack: Follows LIFO (Last In, First Out). 
+  - Operations: `push`, `pop`, `top`.
+- Queue: Follows FIFO (First In, First Out). 
+  - Operations: `enqueue`, `dequeue`, `front`.
+
+---
+
+### 18. **Difference Between Structure and Class**
+|   Structure              |   Class                |
+|--------------------------|------------------------|
+| Members are `public` by default. | Members are `private` by default. |
+| Primarily used for data grouping. | Supports full OOP features.       |
+| Lightweight.             | More feature-rich.    |
+
+19.Abstraction
+- Use: Hides implementation details and shows only essential features.
+- Making a Class Abstract: Include at least one pure virtual function (`virtual void func() = 0;`).
+
+class AbstractClass {
+public:
+    virtual void display() = 0; // Pure virtual function
+};
+
+- Use Case: Enforces implementation in derived classes.
+
+20.Real-Time Examples for OOP Concepts
+1. Encapsulation: A class encapsulating employee data.
+2. Inheritance: Derived class `Car` inheriting `Vehicle`.
+3. Polymorphism: Overriding the `display` function in base and derived classes.
+4. Abstraction: Using abstract classes or interfaces to define functionality without implementation.
+
+---
+
+21.ATM Machine as OOP Example
+-The ATM system is an example of encapsulation, abstraction, and inheritance.
+- Public Data Members:
+  1. Display Screen.
+  2. Card Reader.
+  3. Keypad.
+  4. Cash Dispenser.
+  5. Receipt Printer.
