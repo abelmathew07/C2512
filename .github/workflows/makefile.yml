@@ -1,0 +1,38 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Navigate to Evaluation3 directory
+      run: cd "C2512/Phase 1/Evaluation3"
+
+    - name: Configure
+      run: |
+        cd "C2512/Phase 1/Evaluation3"
+        ./configure
+
+    - name: Install dependencies
+      run: |
+        cd "C2512/Phase 1/Evaluation3"
+        make
+
+    - name: Run check
+      run: |
+        cd "C2512/Phase 1/Evaluation3"
+        make check
+
+    - name: Run distcheck
+      run: |
+        cd "C2512/Phase 1/Evaluation3"
+        make distcheck
